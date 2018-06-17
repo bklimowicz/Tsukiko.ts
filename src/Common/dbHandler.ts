@@ -1,39 +1,30 @@
-import { Client, Query } from 'pg';
-import { Common } from './common';
+import { Client, Query, QueryResult } from 'pg';
+import { DBConfig } from './../cfg/index';
 
-export class DBHandler {
-    private static readonly address = "192.168.1.156";
-    private static readonly dbName = "TsukikoDB";
-    private static readonly port = 5432;
-    private static readonly user = "Admin";
-    private static readonly password = "!Samsung4632599!";
-    private static client: Client;
+export class DBHandler {    
+    client: Client = new Client({
+        user: DBConfig.user,
+        host: DBConfig.host,
+        database: DBConfig.dbName,
+        password: DBConfig.password,
+        port: DBConfig.port
+    });    
 
-    static connect(callback: any): void {
-        callback(() => {
-            this.client = new Client({
-                user: this.user,
-                host: this.address,
-                database: this.dbName,
-                password: this.password,
-                port: this.port
-            });
-            this.client.connect(function () {
-                console.log(`connected`);
-            });
-
-        })
+    constructor() {
+        this.connect();        
     }
 
-    static async query(sql: string): Promise<Query> {
-        return await this.client.query(sql, (err, res) => {
+    private async connect() {
+        await this.client.connect((err) => {
             if (err) {
-                console.log(err.message);
+                console.log(`Error occured on connection:\n${err}`);
+                return;
             }
-        })
+            console.log(`Successfully connected to ${DBConfig.dbName}`);
+        });
     }
 
-    static dispose(): void {
-        this.client.end();
+    public async sql(sql: string): Promise<QueryResult> {
+        return await this.client.query(sql);        
     }
 }

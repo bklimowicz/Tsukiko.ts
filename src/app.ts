@@ -1,7 +1,5 @@
-import { Tsukiko } from './tsukiko';
-import { DBHandler } from './Common/dbHandler'
-//new Tsukiko();
+import { DBHandler } from './index';
+import { Tsukiko } from './main';
 
-DBHandler.connect(function () { 
-    console.log('dupa');
-});
+let dbConn = new DBHandler();
+new Tsukiko(dbConn);

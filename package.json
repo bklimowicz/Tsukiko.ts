@@ -7,13 +7,13 @@
     "name": "S.Z.K"
   },
   "dependencies": {
-    "@types/pg": "^7.4.5",
-    "bufferutil": "^3.0.1",
-    "discord.js": "11.1.0",
+    "@types/pg": "^7.4.9",
+    "bufferutil": "^3.0.5",
+    "discord.js": "^11.3.2",
     "erlpack": "github:hammerandchisel/erlpack",
     "jslinq": "^1.0.21",
     "node-opus": "^0.2.6",
-    "pg": "^7.4.1",
+    "pg": "^7.4.3",
     "sodium": "^2.0.1",
     "uws": "^0.14.5"
   },
