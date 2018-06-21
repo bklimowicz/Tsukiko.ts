@@ -1,30 +1,42 @@
-import { Client, Query, QueryResult } from 'pg';
+import * as mysql from 'mysql';
 import { DBConfig } from './../cfg/index';
 
-export class DBHandler {    
-    client: Client = new Client({
-        user: DBConfig.user,
+export class DBHandler {
+    private config: mysql.ConnectionConfig = {
         host: DBConfig.host,
-        database: DBConfig.dbName,
+        user: DBConfig.user,
         password: DBConfig.password,
-        port: DBConfig.port
-    });    
+        database: DBConfig.dbName,
+    };
+
+    private connection = mysql.createConnection(this.config);
 
     constructor() {
-        this.connect();        
+        this.connect();
     }
 
     private async connect() {
-        await this.client.connect((err) => {
+        this.connection.connect((err) => {
             if (err) {
-                console.log(`Error occured on connection:\n${err}`);
+                console.log(`Error connecting to ${this.config.database}: ${err}`);
                 return;
             }
-            console.log(`Successfully connected to ${DBConfig.dbName}`);
+            console.log(`Connected to ${this.config.database}`);
         });
     }
 
-    public async sql(sql: string): Promise<QueryResult> {
-        return await this.client.query(sql);        
+    public sql(sql: string, args: string[] | undefined = undefined): Promise<mysql.Query> {
+        return new Promise((resolve, reject) => {
+            this.connection.query(sql, args, (err, res) => {
+                if (err) {
+                    console.log(`DB QUERY ERROR`);
+                    console.log(`Query: ${sql.toString()}`);
+                    console.log(`Error: ${err.message}.`);
+                    return reject(err);
+                }
+                console.log(`Result: ${JSON.stringify(res)}`);
+                resolve(res);
+            });
+        });
     }
 }
