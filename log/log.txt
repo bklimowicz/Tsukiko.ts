@@ -1,0 +1,12 @@
+1531084532416:{LOG_ENTRY:Login:Entering Login function.
+1531084532417:{LOG_EXIT:Login:Exiting Login function.
+1531084533646:{LOG_ENTRY:TsuGuild Constructor:Logged to M&A - Discord
+1,531,084,608,268:{LOG_ENTRY:Login:Entering Login function.
+1,531,084,608,368:{LOG_EXIT:Login:Exiting Login function.
+1,531,084,609,249:{LOG_ENTRY:TsuGuild Constructor:Logged to M&A - Discord
+23:18:29 GMT+0200 (Central European Summer Time):{LOG_ENTRY:Login:Entering Login function.
+23:18:29 GMT+0200 (Central European Summer Time):{LOG_EXIT:Login:Exiting Login function.
+23:18:30 GMT+0200 (Central European Summer Time):{LOG_ENTRY:TsuGuild Constructor:Logged to M&A - Discord
+17:16:15 GMT+0200 (Central European Summer Time):{LOG_ENTRY:Login:Entering Login function.
+17:16:15 GMT+0200 (Central European Summer Time):{LOG_EXIT:Login:Exiting Login function.
+17:16:17 GMT+0200 (Central European Summer Time):{LOG_ENTRY:TsuGuild Constructor:Logged to M&A - Discord

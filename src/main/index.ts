@@ -1,1 +1,1 @@
-export { Tsukiko } from './tsukiko';
+export * from './tsukiko';

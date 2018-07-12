@@ -34,6 +34,7 @@ export class DBHandler {
                     console.log(`Error: ${err.message}.`);
                     return reject(err);
                 }
+                console.log(`Query: ${sql}`);
                 console.log(`Result: ${JSON.stringify(res)}`);
                 resolve(res);
             });

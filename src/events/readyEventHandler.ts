@@ -2,25 +2,20 @@ import { Client, Guild } from "discord.js";
 import { Tsukiko } from "../main";
 import { TsuGuild } from "../dataObjects";
 import { DBHandler } from "../common";
+import { EventBase } from "./eventBase";
 
-export class ReadyEventHandler {
-    private client: Client;
-    private dbConn: DBHandler;
+export class ReadyEventHandler extends EventBase {
+    constructor(objBot: Tsukiko, objClient: Client, objDBHandler: DBHandler) {
+        super(objBot, objClient, objDBHandler);
+        this.RegisterEvent();
+    }
 
-    constructor(client: Client, dbConn: DBHandler) {
-        this.client = client;
-        this.dbConn = dbConn;
-
-        client.on('ready', () => {
+    protected RegisterEvent(): void {
+        this.objClient.on('ready', () => {
             console.log(`Ready`);
-            this.client.guilds.forEach(guild => {
-                console.log(`Added new guild: ${guild.name}`)
-                Tsukiko.GUILDS.push(new TsuGuild(guild, this.dbConn));
+            this.objClient.guilds.forEach(guild => {
+                console.log(`Added new guild: ${guild.name}`);                
             });
         });
     }
-
-    // private initEvent() {
-        
-    // }
 }
