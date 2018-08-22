@@ -26,7 +26,7 @@ export class TsuGuild extends TsuObject {
         dbConn.sql(SQLQueries.getLogChannel)
         .then((res: any) => {
             this.logChannel = guild.channels.get(res[0].channelID) as TextChannel;
-            this.objLogger.LogEntry(NAME, `Logged to ${this.objGuild}`, this.getLogsChannel());
+            this.objLogger.LogInfo(NAME, `Logged to ${this.objGuild}`, this.getLogsChannel());
         });
 
     }

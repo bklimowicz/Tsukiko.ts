@@ -13,52 +13,53 @@ export class Logger implements ILogger {
         this.LogLevel = 1;
     }
     
-    public LogEntry(place: string, message: string, channel?: TextChannel) {
-        if (this.LogLevel < 1) return;
-
-        const NAME = `LOG_ENTRY`;
-
-        this.WriteToFile(NAME, place, message);
-        if (channel !== undefined) {
-            this.WriteToLogChannel(NAME, place, message, channel);
-        }
-    }
-
-    public LogExit(place: string, message: string, channel?: TextChannel) {
-        if (this.LogLevel < 1) return;
-
-        const NAME = `LOG_EXIT`;        
-
-        this.WriteToFile(NAME, place, message);
-        if (channel !== undefined) {
-            this.WriteToLogChannel(NAME, place, message, channel);
-        }
-    }
-    public LogWarning(place: string, message: string, channel?: TextChannel) {
+    public LogWarning(place: string, message: string, channel?: TextChannel, operationType?: string) {
         if (this.LogLevel < 1) return;
 
         const NAME = `LOG_WARNING`;
 
-        this.WriteToFile(NAME, place, message);
+        this.WriteToFile(NAME, place, message, operationType);
         if (channel !== undefined) {
-            this.WriteToLogChannel(NAME, place, message, channel);
+            this.WriteToLogChannel(NAME, place, message, channel, operationType);
         }
     }
 
-    private WriteToLogChannel(NAME: string, place: string, message: string, channel: TextChannel) {
-        channel.send(this.CreateLogEmbedMessage(NAME, place, message));
+    public LogError(place: string, message: string, channel?: TextChannel, operationType?: string) {
+        if (this.LogLevel < 1) return;
+
+        const NAME = `LOG_ERROR`;
+
+        this.WriteToFile(NAME, place, message, operationType);
+        if (channel !== undefined) {
+            this.WriteToLogChannel(NAME, place, message, channel, operationType);
+        }
     }
 
-    private WriteToFile(NAME: string, place: string, message: string) {
-        FS.appendFile(this.LOG_PATH, `${new Date().toLocaleTimeString()}:{${NAME}:${place}:${message}\n`, (error: any) => {
+    public LogInfo(place: string, message: string, channel?: TextChannel, operationType?: string) {
+        if (this.LogLevel < 1) return;
+
+        const NAME = `LOG_INFO`;
+
+        this.WriteToFile(NAME, place, message, operationType);
+        if (channel !== undefined) {
+            this.WriteToLogChannel(NAME, place, message, channel, operationType);
+        }
+    }
+
+    private WriteToLogChannel(NAME: string, place: string, message: string, channel: TextChannel, operationType?: string) {
+        channel.send(this.CreateLogEmbedMessage(NAME, place, message, operationType));
+    }
+
+    private WriteToFile(NAME: string, place: string, message: string, operationType?: string) {
+        FS.appendFile(this.LOG_PATH, `${new Date().toLocaleTimeString()}:{${NAME}:${place}:${operationType}:${message}:\n`, (error: any) => {
             console.log(`${NAME}: ${error}`);
         });
     }
 
-    private CreateLogEmbedMessage(NAME: string, place: string, message: string): any {
+    private CreateLogEmbedMessage(NAME: string, place: string, message: string, operationType?: string): any {
         return {embed:{
             title: `${place}`,
-            description: `${message}\n${new Date().toLocaleTimeString()}`,
+            description: `${operationType}\n${message}\n${new Date().toLocaleTimeString()}`,
             color: this.LOG_COLOR 
         }}
     }
