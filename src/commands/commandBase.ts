@@ -17,9 +17,7 @@ export class CommandBase {
         console.log(this.commandName);
     }
 
-    protected DoCommand(): boolean {
-        const NAME = 'DoCommand';     
-        // this.objLogger.LogEntry()
+    protected DoCommand(): boolean {                
         let result = false;
         return result;
     }
