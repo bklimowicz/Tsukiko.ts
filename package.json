@@ -1,18 +1,26 @@
 {
-  "name": "tsukiko",
-  "version": "0.1.2",
-  "description": "Tsukiko, multifunctional Discord bot. Her name means Tsuki \"moon\" and \"ko\" child, because she was mostly written at night because of author's insomnia. She is basically a child of the night",
-  "main": "tsukiko.js",
-  "author": {
-    "name": "S.Z.K"
-  },
-  "dependencies": {
-    "@types/mysql": "^2.15.5",
-    "@types/node": "^10.11.4",
-    "discord.js": "^11.4.2",
-    "mysql": "^2.16.0",
-    "node-opus": "^0.3.0",
-    "reflect-metadata": "^0.1.12",
-    "typeorm": "^0.2.7"
-  }
+   "name": "tsukiko",
+   "version": "0.1.2",
+   "description": "Tsukiko, multifunctional Discord bot. Her name means Tsuki \"moon\" and \"ko\" child, because she was mostly written at night because of author's insomnia. She is basically a child of the night",
+   "main": "tsukiko.js",
+   "author": {
+      "name": "S.Z.K"
+   },
+   "dependencies": {
+      "@types/mysql": "^2.15.5",
+      "@types/node": "^10.11.4",
+      "discord.js": "^11.4.2",
+      "mysql": "^2.14.1",
+      "node-opus": "^0.3.0",
+      "reflect-metadata": "^0.1.10",
+      "typeorm": "0.2.7"
+   },
+   "devDependencies": {
+      "ts-node": "3.3.0",
+      "@types/node": "^8.0.29",
+      "typescript": "2.5.2"
+   },
+   "scripts": {
+      "start": "ts-node src/index.ts"
+   }
 }
