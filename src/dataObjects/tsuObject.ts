@@ -1,5 +1,5 @@
 import { Client } from "discord.js";
-import { DBHandler, Logger } from "../common";
+import { Logger } from "../common";
 
 export class TsuObject {
 

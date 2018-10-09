@@ -1,6 +1,9 @@
-import { DBHandler } from './index';
 import { Tsukiko } from './main';
 import "reflect-metadata";
+import { createConnection } from 'typeorm';
 
-let dbConn = new DBHandler();
-new Tsukiko(dbConn);
+createConnection().then(() => {    
+    new Tsukiko();
+}).catch(error => {
+    console.log(error);
+});

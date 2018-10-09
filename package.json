@@ -13,14 +13,12 @@
       "mysql": "^2.14.1",
       "node-opus": "^0.3.0",
       "reflect-metadata": "^0.1.10",
-      "typeorm": "0.2.7"
-   },
-   "devDependencies": {
+      "typeorm": "0.2.7",
+      "concurrently": "^2.2.0",
       "ts-node": "3.3.0",
-      "@types/node": "^8.0.29",
       "typescript": "2.5.2"
    },
    "scripts": {
-      "start": "ts-node src/index.ts"
+      "start": "concurrently --kill-others \"tsc -w\" \"nodemon deploy/app.js\""
    }
 }
