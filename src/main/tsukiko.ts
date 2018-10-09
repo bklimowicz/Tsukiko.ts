@@ -27,14 +27,6 @@ export class Tsukiko {
         const messageEvent = new MessageEventHandler(this.client, this.parameters);
     }
 
-    // private async Login() {
-    //     this.parameters.GetToken().then(record => {
-    //         record ? this.client.login(record.value) : console.log('No token provided');
-    //     }).catch(err => {
-    //         console.log(err);
-    //     })
-    // }
-
     private LoginSync() {
         this.parameters.GetToken().then(record => {
             record ? this.client.login(record.value) : console.log('No token provided');
