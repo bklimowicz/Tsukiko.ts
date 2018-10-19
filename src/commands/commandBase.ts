@@ -1,24 +1,32 @@
-import { Logger } from "../common";
+import { TsuParameters } from "../common";
+import { Client, Message, User, GuildMember } from "discord.js";
 
-export class CommandBase {
-    protected isAdminCommand: boolean = false;
-    protected commandName: string = '';
-    private readonly commandPrefix: string = 'ts!';
-    private objLogger: Logger;
+export abstract class CommandBase {    
+    protected isAdminCommand: boolean;
+    protected client: Client;
+    protected parameters: TsuParameters;
+    protected message: Message;    
 
-    constructor()
+    constructor(client: Client, parameters: TsuParameters, message: Message)
     {
-        this.objLogger = new Logger();
-        this.DoCommand();
+        this.client = client;
+        this.parameters = parameters;
+        this.message = message;        
     }
 
-    protected run(): void {
-        // debug purposes
-        console.log(this.commandName);
-    }
+    protected CanUseCommand(author: User): boolean {
+        if (!this.isAdminCommand) return true;
+        
+        var guildMember = this.client.guilds.get(this.parameters.GUILD_ID).members.get(author.id) as GuildMember;
 
-    protected DoCommand(): boolean {                
-        let result = false;
-        return result;
-    }
+        if (!(guildMember.roles.has(this.parameters.Roles.ADMIN)
+            || guildMember.roles.has(this.parameters.Roles.MOD)
+            || guildMember.roles.has(this.parameters.Roles.TECHNICIAN))) {
+                return false;
+            }
+
+        return true;
+    }    
+
+    protected abstract ExecuteCommand(): void;
 }

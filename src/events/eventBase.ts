@@ -1,11 +1,11 @@
-import { Tsukiko, BotParameters } from "../main";
+import { Tsukiko, TsuParameters } from "../main";
 import { Client } from "discord.js";
 
 export abstract class EventBase{
     protected client: Client;
-    protected parameters: BotParameters;
+    protected parameters: TsuParameters;
 
-    constructor(client: Client, parameters: BotParameters) {
+    constructor(client: Client, parameters: TsuParameters) {
         this.client = client;
         this.parameters = parameters;
 

@@ -1,18 +1,28 @@
 import { ILogger } from "../interfaces";
 import { TextChannel } from "discord.js";
 import * as FS from 'fs';
+import { LoggerConstants } from "./constants/loggingConstants";
 
 export class Logger implements ILogger {
-    readonly LOG_PATH: string;
-    readonly LOG_COLOR: number; 
-    readonly LogLevel: number;
+    private readonly LOG_PATH: string;
+    private LogColor: number; 
+    private LogLevel: number;
 
+    
     constructor() {
-        this.LOG_PATH = './log/log.txt';
-        this.LOG_COLOR = 0x17A589;
-        this.LogLevel = 1;
+        this.LOG_PATH = LoggerConstants.LOG_PATH;
+        this.LogColor = LoggerConstants.LOG_COLOR;
+        this.LogLevel = LoggerConstants.LOG_LEVEL;
     }
     
+    public SetLogLevel(value: number) {
+        this.LogLevel = value;
+    }
+
+    public SetLogColor(value: number) {
+        this.LogColor = value;
+    }
+
     public LogWarning(place: string, message: string, channel?: TextChannel, operationType?: string) {
         if (this.LogLevel < 1) return;
 
@@ -60,7 +70,7 @@ export class Logger implements ILogger {
         return {embed:{
             title: `${place}`,
             description: `${operationType}\n${message}\n${new Date().toLocaleTimeString()}`,
-            color: this.LOG_COLOR 
+            color: this.LogColor 
         }}
     }
 }

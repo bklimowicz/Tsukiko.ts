@@ -1,2 +1,2 @@
-export * from './setBotChannelCommand';
-export * from './setLogChannelCommand';
+export * from './setParameterCommand';
+export * from './pingCommand';

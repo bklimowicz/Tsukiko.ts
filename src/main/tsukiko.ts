@@ -1,13 +1,12 @@
-import { Logger, ParameterKeyConstants } from '../common';
+import { Logger, ParametersKeysConstants } from '../common';
 import { Client, Guild, Collection } from 'discord.js';
-import { TsuGuild } from '../dataObjects';
 import { ReadyEventHandler } from '../events/readyEventHandler';
 import { MessageEventHandler } from '../events';
-import { BotParameters } from '../common/parameters';
+import { TsuParameters } from '../common/parameters';
 
 export class Tsukiko {    
     private client: Client;
-    private parameters: BotParameters;
+    private parameters: TsuParameters;
 
     constructor() {        
         this.client = new Client();
@@ -16,8 +15,8 @@ export class Tsukiko {
     }
 
     private InitBot() {
-        this.parameters = new BotParameters();
-
+        this.parameters = new TsuParameters();
+        
         this.LoginSync();
         this.SetupEvents();        
     }    
@@ -30,6 +29,6 @@ export class Tsukiko {
     private LoginSync() {
         this.parameters.GetToken().then(record => {
             record ? this.client.login(record.value) : console.log('No token provided');
-        })
+        });
     }
 }
