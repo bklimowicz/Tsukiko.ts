@@ -1,9 +1,9 @@
-import { Entity, Column, BaseEntity, PrimaryColumn } from "typeorm";
+import { Entity, Column, BaseEntity, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export class Roles extends BaseEntity {
 
-    @PrimaryColumn()
+    @PrimaryGeneratedColumn()
     id: number;
 
     @Column()

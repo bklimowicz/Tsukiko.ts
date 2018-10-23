@@ -8,6 +8,4 @@ export abstract class ParametersKeysConstants {
     public static readonly ADMIN_ROLE_NAME = 'Admin';
     public static readonly MOD_ROLE_NAME = 'Mod';
     public static readonly TECHNICIAN_ROLE_NAME = 'Technician';
-
-    
 }

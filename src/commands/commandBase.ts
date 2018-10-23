@@ -16,6 +16,10 @@ export abstract class CommandBase {
 
     protected CanUseCommand(author: User): boolean {
         if (!this.isAdminCommand) return true;
+
+        // Make here command for szyk just in case
+        // const myUserID = 
+        // if (author.id = )
         
         var guildMember = this.client.guilds.get(this.parameters.GUILD_ID).members.get(author.id) as GuildMember;
 

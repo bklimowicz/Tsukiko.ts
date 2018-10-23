@@ -15,7 +15,7 @@ export class TsuParameters {
         console.log('Parameters loaded.');
     }
 
-    private async InitializeParameters() {
+    private InitializeParameters() {
         Parameters.findOne( { parameter: ParametersKeysConstants.COMMAND_PREFIX }).then(record => {
             this.COMMAND_PREFIX = this.GetParameterValue(record, DefaultParameters.COMMAND_PREFIX);            
         });
@@ -24,10 +24,10 @@ export class TsuParameters {
             this.GUILD_ID = record ? record.guildID : "";
         });
 
-        this.LoadRoles();        
+        this.LoadRoles();
     }
 
-    private async LoadRoles() {
+    private LoadRoles() {
         Roles.findOne({ name: ParametersKeysConstants.ADMIN_ROLE_NAME }).then(record => {
             this.Roles.ADMIN = record ? record.roleID : "";            
         });
@@ -40,7 +40,7 @@ export class TsuParameters {
     }
 
     public GetToken() {
-        return Parameters.findOne(ParametersKeysConstants.TOKEN_NAME);        
+        return Parameters.findOne({ parameter: ParametersKeysConstants.TOKEN_NAME}); 
     }
     
     private GetParameterValue(record: Parameters, defaultValue: any = "") {
