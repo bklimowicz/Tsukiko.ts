@@ -12,9 +12,9 @@ export class TsuParameters {
     public Roles: RolesContainer = new RolesContainer();
     public Channels: ChannelsContainer = new ChannelsContainer();
 
-    public MESSAGE_TIME_DELETE = 15000;
+    public MESSAGE_DELETE_TIME: number;
 
-    public EMBEDED_COLOR = 0xc213e3;
+    public EMBEDED_COLOR: number;
 
     constructor() {
         this.InitializeParameters();
@@ -26,12 +26,26 @@ export class TsuParameters {
             this.COMMAND_PREFIX = this.GetParameterValue(record, "");            
         });
 
+        Parameters.findOne({ parameter: ParametersKeysConstants.MESSAGE_DELETE_TIME }).then(record => {
+            this.MESSAGE_DELETE_TIME = Number(this.GetParameterValue(record, ""));
+            console.log(this.MESSAGE_DELETE_TIME);
+        });
+
+        Parameters.findOne({ parameter: ParametersKeysConstants.EMBEDED_COLOR }).then(record => {
+            this.EMBEDED_COLOR = Number(this.GetParameterValue(record, ""));
+            console.log(this.EMBEDED_COLOR);
+        });
+
         Guild.findOne({ name: ParametersKeysConstants.GUILD_NAME }).then(record => {
             this.GUILD_ID = record ? record.guildID : "";
         });
 
         this.LoadChannels();
         this.LoadRoles();
+    }
+
+    public ReloadParameters() {
+        this.InitializeParameters();
     }
 
     private LoadChannels() {

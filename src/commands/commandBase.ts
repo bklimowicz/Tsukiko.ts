@@ -39,7 +39,7 @@ export abstract class CommandBase {
         this.message.channel.send(message).then((_message: Message) => {
             setTimeout(() => {
                 _message.delete();
-            }, this.parameters.MESSAGE_TIME_DELETE);
+            }, this.parameters.MESSAGE_DELETE_TIME);
         });        
     }
 

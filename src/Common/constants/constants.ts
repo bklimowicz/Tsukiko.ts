@@ -1,6 +1,8 @@
 export abstract class ParametersKeysConstants {
     public static readonly COMMAND_PREFIX = 'command_prefix';
     public static readonly TOKEN_NAME = 'token';
+    public static readonly MESSAGE_DELETE_TIME = 'message_delete_time';
+    public static readonly EMBEDED_COLOR = 'embeded_color'
 
     public static readonly GUILD_ID = 'guild_id';
     public static readonly GUILD_NAME = 'M&A Discord';

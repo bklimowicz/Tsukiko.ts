@@ -25,6 +25,7 @@ export class TimeMuteCommand extends CommandBase {
         if (!this.CanUseCommand(message.author)) return;
         if (message.content.endsWith(' -h')) {
             this.SendDeletableMessage(this.HELP_MESSAGE);
+            return;
         }
 
         this.ExecuteCommand();

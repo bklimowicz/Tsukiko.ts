@@ -10,6 +10,8 @@ export abstract class Commands {
     public static readonly TIMED_MUTE = 'timedMute';
     public static readonly MUTE = 'mute';
     public static readonly LIST_MUTED_USERS = 'listMutedUsers';
+    public static readonly RELOAD_PARAMETERS = 'reloadParameters';
+
     
     public static readonly COMMANDS: string[] = [
         Commands.SET_PARAMETER,
@@ -18,6 +20,7 @@ export abstract class Commands {
         Commands.PING,
         Commands.TIMED_MUTE,
         Commands.MUTE,
-        Commands.LIST_MUTED_USERS
+        Commands.LIST_MUTED_USERS,
+        Commands.RELOAD_PARAMETERS
     ];
 }
