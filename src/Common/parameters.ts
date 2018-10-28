@@ -28,12 +28,10 @@ export class TsuParameters {
 
         Parameters.findOne({ parameter: ParametersKeysConstants.MESSAGE_DELETE_TIME }).then(record => {
             this.MESSAGE_DELETE_TIME = Number(this.GetParameterValue(record, ""));
-            console.log(this.MESSAGE_DELETE_TIME);
         });
 
         Parameters.findOne({ parameter: ParametersKeysConstants.EMBEDED_COLOR }).then(record => {
             this.EMBEDED_COLOR = Number(this.GetParameterValue(record, ""));
-            console.log(this.EMBEDED_COLOR);
         });
 
         Guild.findOne({ name: ParametersKeysConstants.GUILD_NAME }).then(record => {
