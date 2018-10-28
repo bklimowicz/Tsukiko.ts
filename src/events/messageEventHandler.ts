@@ -3,7 +3,10 @@ import { Client, Message } from "discord.js";
 import { TsuParameters } from "../main";
 import { Commands, MessageConstants } from "../common/constants/index";
 import { SetParameterCommand } from "../commands/setParameterCommand";
-import { PingCommand, ListParameters, GetParameterCommand } from "../commands";
+import { PingCommand, GetParameterCommand, ListParametersCommand } from "../commands";
+import { TimeMuteCommand } from "../commands/timeMuteCommand";
+import { MuteCommand } from "../commands/muteCommand";
+import { ListMutedUsersCommand } from "../commands/listMutedUsersCommand";
 
 export class MessageEventHandler extends EventBase {
     constructor(client: Client, parameters: TsuParameters) {
@@ -36,8 +39,17 @@ export class MessageEventHandler extends EventBase {
                 new PingCommand(this.client, this.parameters, message);
                 break;
             case Commands.LIST_PARAMETERS:
-                new ListParameters(this.client, this.parameters, message);
+                new ListParametersCommand(this.client, this.parameters, message);
                 break;
+            case Commands.TIMED_MUTE:
+                new TimeMuteCommand(this.client, this.parameters, message);
+                break;
+            case Commands.MUTE:
+                new MuteCommand(this.client, this.parameters, message);
+                break;
+            case Commands.LIST_MUTED_USERS:
+                new ListMutedUsersCommand(this.client, this.parameters, message);
+                break;                
             default:
                 message.reply("This is not a command.");
         }

@@ -1,7 +1,8 @@
-import { Parameters, Guild } from "../entity";
+import { Parameters, Guild, Channels } from "../entity";
 import { ParametersKeysConstants } from "./constants/constants";
 import { Roles } from "../entity/roles";
 import { RolesContainer } from "../dataObjects/dataContainers/rolesContainer";
+import { ChannelsContainer } from "../dataObjects/dataContainers";
 
 export class TsuParameters {
     public COMMAND_PREFIX: string; 
@@ -9,34 +10,78 @@ export class TsuParameters {
     public GUILD_ID: string;
 
     public Roles: RolesContainer = new RolesContainer();
+    public Channels: ChannelsContainer = new ChannelsContainer();
+
+    public MESSAGE_TIME_DELETE = 15000;
+
+    public EMBEDED_COLOR = 0xc213e3;
 
     constructor() {
         this.InitializeParameters();
         console.log('Parameters loaded.');
     }
 
-    private InitializeParameters() {
-        Parameters.findOne( { parameter: ParametersKeysConstants.COMMAND_PREFIX }).then(record => {
-            this.COMMAND_PREFIX = this.GetParameterValue(record, DefaultParameters.COMMAND_PREFIX);            
+    private InitializeParameters() {        
+        Parameters.findOne({ parameter: ParametersKeysConstants.COMMAND_PREFIX }).then(record => {
+            this.COMMAND_PREFIX = this.GetParameterValue(record, "");            
         });
 
-        Guild.findOne( { name: ParametersKeysConstants.GUILD_NAME } ).then(record => {
+        Guild.findOne({ name: ParametersKeysConstants.GUILD_NAME }).then(record => {
             this.GUILD_ID = record ? record.guildID : "";
         });
 
+        this.LoadChannels();
         this.LoadRoles();
+    }
+
+    private LoadChannels() {
+        Channels.findOne({ channelName: ParametersKeysConstants.BOT_CHANNEL }).then(record => {
+            if (record === null || record === undefined) {
+                return;
+            }
+            this.Channels.BOT_CHANNEL = record.channelID;
+        });
+        
+        Channels.findOne({ channelName: ParametersKeysConstants.LOG_CHANNEL }).then(record => {
+            if (record === null || record === undefined) { 
+                return;
+            }
+            this.Channels.LOG_CHANNEL = record.channelID;
+        });
+
+        Channels.findOne({ channelName: ParametersKeysConstants.GENERAL_CHANNEL }).then(record => {
+            if (record === null || record === undefined) {
+                return;
+            }
+            this.Channels.GENERAL_CHANNEL = record.channelID;
+        });
     }
 
     private LoadRoles() {
         Roles.findOne({ name: ParametersKeysConstants.ADMIN_ROLE_NAME }).then(record => {
+            if (record === null || record === undefined) { 
+                return;
+            }
             this.Roles.ADMIN = record ? record.roleID : "";            
         });
         Roles.findOne({ name: ParametersKeysConstants.MOD_ROLE_NAME }).then(record => {
+            if (record === null || record === undefined) {
+                return;
+            }
             this.Roles.MOD = record ? record.roleID : "";            
         });
         Roles.findOne({ name: ParametersKeysConstants.TECHNICIAN_ROLE_NAME }).then(record => {
+            if (record === null || record === undefined) {
+                return;
+            }
             this.Roles.TECHNICIAN = record ? record.roleID : "";            
         });
+        Roles.findOne({ name: ParametersKeysConstants.MUTED_ROLE_NAME }).then(record => {
+            if (record === null || record === undefined) {
+                return;
+            }
+            this.Roles.MUTED = record ? record.roleID : "";
+        })
     }
 
     public GetToken() {
@@ -46,8 +91,4 @@ export class TsuParameters {
     private GetParameterValue(record: Parameters, defaultValue: any = "") {
         return record ? record.value : defaultValue;
     }
-}
-
-class DefaultParameters {
-    public static readonly COMMAND_PREFIX = 'ts!';    
 }

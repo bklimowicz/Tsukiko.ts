@@ -3,7 +3,7 @@ import { Client, Message } from "discord.js";
 import { TsuParameters } from "..";
 import { ParametersConstants } from "../common/constants/index";
 
-export class ListParameters extends CommandBase{
+export class ListParametersCommand extends CommandBase{
     isAdminCommand = true;
 
     constructor(client: Client, parameters: TsuParameters, message: Message) {                     
@@ -15,8 +15,7 @@ export class ListParameters extends CommandBase{
     }
 
     protected ExecuteCommand() {
-        let reply = "List of available parameters:\n";
-        console.log(ParametersConstants.PARAMETERS);
+        let reply = "List of available parameters:\n";        
         ParametersConstants.PARAMETERS.forEach(parameter => {
             reply += `# **${parameter}**\n`;
         });
