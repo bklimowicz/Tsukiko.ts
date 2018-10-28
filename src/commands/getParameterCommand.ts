@@ -20,7 +20,7 @@ export class GetParameterCommand extends CommandBase {
         if (paramName === undefined) return;
         Parameters.findOne({ parameter: <string>paramName }).then(record => {
             if (record !== undefined) {
-                this.message.channel.send(`**Parameter:** ${paramName}\n**Value:** ${record.value}`);
+                this.SendDeletableMessage(`**Parameter:** ${paramName}\n**Value:** ${record.value}`);
             }
         });
     }
@@ -29,7 +29,7 @@ export class GetParameterCommand extends CommandBase {
     private PrecheckParameters() {        
         const splitMessage = this.message.content.split(MessageConstants.COMMAND_SEPARATOR);
         const paramName = splitMessage[1] ? splitMessage[1] :
-            () => { this.message.channel.send('Invalid command parameter: paramName'); return ""; };
+            () => { this.SendDeletableMessage('Invalid command parameter: paramName'); return ""; };
         return paramName;
     }
 }

@@ -29,12 +29,13 @@ export class SetParameterCommand extends CommandBase {
                     newParam.parameter = <string>paramName;
                     newParam.value = <string>paramValue;
                     newParam.save();
-                }                
-                this.message.channel.send(`Parameter set.`);
+                }
+                this.SendDeletableMessage(`Parameter set`);
+                this.logChannel.send(this.BuildEmbedLogMessage(`Parameter set`, `${paramName} set to value: ${paramValue}`))            
             });
         }
         else {
-            this.message.channel.send(`Unknown parameter name`);
+            this.SendDeletableMessage(`Unknown parameter name`);            
         }
     }
     
@@ -42,9 +43,9 @@ export class SetParameterCommand extends CommandBase {
     private PrecheckParameters() {        
         const splitMessage = this.message.content.split(MessageConstants.COMMAND_SEPARATOR);
         const paramName = splitMessage[1] ? splitMessage[1] :
-            () => { this.message.channel.send('Invalid command parameter: paramName'); return ""; };
+            () => { this.SendDeletableMessage('Invalid command parameter: paramName'); return ""; };
         const paramValue = splitMessage[2] ? splitMessage[2] :
-            () => { this.message.channel.send('Invalid command parameter: paramValue'); return ""; };
+            () => { this.SendDeletableMessage('Invalid command parameter: paramValue'); return ""; };
         return { paramName, paramValue };
     }
 }

@@ -28,6 +28,7 @@ export abstract class CommandBase {
         if (!(guildMember.roles.has(this.parameters.Roles.ADMIN)
             || guildMember.roles.has(this.parameters.Roles.MOD)
             || guildMember.roles.has(this.parameters.Roles.TECHNICIAN))) {
+                this.SendDeletableMessage(`Not enough privileges to use this command`);
                 return false;
             }
 
