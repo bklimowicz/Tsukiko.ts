@@ -19,6 +19,6 @@ export class ListParametersCommand extends CommandBase{
         ParametersConstants.PARAMETERS.forEach(parameter => {
             reply += `# **${parameter}**\n`;
         });
-        this.message.channel.send(reply);
+        this.SendDeletableMessage(reply);        
     }
 }

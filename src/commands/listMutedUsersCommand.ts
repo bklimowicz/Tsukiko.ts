@@ -27,7 +27,7 @@ export class ListMutedUsersCommand extends CommandBase{
                     reply += `* ${user} is muted permanently\n`;
                 }
             });
-            this.message.channel.send(reply);
+            this.SendDeletableMessage(reply); 
         });
     }
 }
