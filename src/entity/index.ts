@@ -4,3 +4,4 @@ export * from './guild';
 export * from './channels';
 export * from './mutedUsers';
 export * from './users';
+export * from './forVoiceChannels';
