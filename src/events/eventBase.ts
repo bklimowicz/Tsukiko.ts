@@ -1,4 +1,4 @@
-import { Tsukiko, TsuParameters } from "../main";
+import { TsuParameters } from "../main";
 import { Client, TextChannel, RichEmbed, MessageOptions, Attachment, Message } from "discord.js";
 
 export abstract class EventBase{
@@ -19,7 +19,7 @@ export abstract class EventBase{
         channel.send(message).then((_message: Message) => {
             setTimeout(() => {
                 _message.delete();     
-            }, this.parameters.MESSAGE_TIME_DELETE);
+            }, this.parameters.MESSAGE_DELETE_TIME);
         });
     }
 

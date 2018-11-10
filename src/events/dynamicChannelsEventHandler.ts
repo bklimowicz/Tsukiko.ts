@@ -1,8 +1,8 @@
 import { EventBase } from "./eventBase";
-import { Client, TextChannel, GuildMember, RichEmbed, Channel, GuildChannel, VoiceChannel } from "discord.js";
+import { Client, GuildChannel, VoiceChannel } from "discord.js";
 import { TsuParameters } from "../main";
-import { MutedUsers } from "../entity/mutedUsers";
 import { ForVoiceChannels } from "../entity";
+import { ChannelType } from "..";
 
 export class DynamicChannelsEventHandler extends EventBase{
 
@@ -83,10 +83,4 @@ class ForVoiceTextChannel {
             channelToDB.save();
         })
     }
-}
-
-enum ChannelType {
-    TEXT = 'text',
-    VOICE = 'voice',
-    CATEGORY = 'category'
 }

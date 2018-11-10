@@ -1,5 +1,5 @@
 import { EventBase } from "./eventBase";
-import { Client, TextChannel, GuildMember, RichEmbed } from "discord.js";
+import { Client } from "discord.js";
 import { TsuParameters } from "../main";
 import { MutedUsers } from "../entity/mutedUsers";
 

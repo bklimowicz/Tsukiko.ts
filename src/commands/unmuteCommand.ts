@@ -3,7 +3,7 @@ import { TsuParameters } from "../main";
 import { CommandBase } from "./commandBase";
 import { MutedUsers } from "../entity/mutedUsers";
 
-export class MuteCommand extends CommandBase {
+export class UnmuteCommand extends CommandBase {
     isAdminCommand = true;
 
     private HELP_MESSAGE = new RichEmbed( {
@@ -42,7 +42,7 @@ export class MuteCommand extends CommandBase {
     }    
 
     private MuteUser(user: GuildMember) {
-        user.addRole(this.parameters.Roles.MUTED);
+        user.removeRole(this.parameters.Roles.MUTED);
         this.SendDeletableMessage(`${user} is muted permanently`);
         this.logChannel.send(this.BuildEmbedLogMessage(`Mute applied`, `${user} has been muted permanently`));
     }
