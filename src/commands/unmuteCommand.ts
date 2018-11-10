@@ -7,8 +7,8 @@ export class UnmuteCommand extends CommandBase {
     isAdminCommand = true;
 
     private HELP_MESSAGE = new RichEmbed( {
-        title: "Mute Command",
-        description: "Command syntax:\nts!mute **@user**",
+        title: "Unmute Command",
+        description: "Command syntax:\nts!unmute **@user**",
         thumbnail: {
             url: 'https://banner2.kisspng.com/20180329/iuq/kisspng-question-mark-white-computer-icons-clip-art-question-mark-5abc8e7b8cc5f5.2576999515223066835766.jpg'
         },
@@ -34,28 +34,25 @@ export class UnmuteCommand extends CommandBase {
             return;
         }
 
-        if (!this.InsertToDB(user)) {
+        if (!this.DeleteFromDB(user)) {
             return;
         }
         
-        this.MuteUser(user);        
+        this.UnmuteUser(user);        
     }    
 
-    private MuteUser(user: GuildMember) {
+    private UnmuteUser(user: GuildMember) {
         user.removeRole(this.parameters.Roles.MUTED);
-        this.SendDeletableMessage(`${user} is muted permanently`);
-        this.logChannel.send(this.BuildEmbedLogMessage(`Mute applied`, `${user} has been muted permanently`));
+        this.SendDeletableMessage(`${user} is unmuted`);
+        this.logChannel.send(this.BuildEmbedLogMessage(`Mute removed`, `${user} has been unmuted`));
     }
 
-    private InsertToDB(user: GuildMember): boolean {        
-        const newRecord = new MutedUsers();
-        newRecord.userID = user.id;
-        newRecord.timeToUnmute = null;
+    private DeleteFromDB(user: GuildMember): boolean {
         try {
-            newRecord.save();
+            MutedUsers.delete( { userID: user.id } );            
         }
         catch (ex) {
-            this.SendDeletableMessage(`Error inserting to database. Aborting.\n${ex}`);
+            this.SendDeletableMessage(`Error deleting from database. Aborting.\n${ex}`);
             return false;
         }
         return true;
@@ -63,7 +60,7 @@ export class UnmuteCommand extends CommandBase {
 
     private CheckParameters(user: GuildMember) {        
         if (user === null) {
-            this.SendDeletableMessage(`You haven't selected user to mute. Please take a look on \`ts!mute -h\``);            
+            this.SendDeletableMessage(`You haven't selected user to unmute. Please take a look on \`ts!mute -h\``);            
             return false;
         }
 
