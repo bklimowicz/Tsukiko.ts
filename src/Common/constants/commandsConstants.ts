@@ -11,7 +11,8 @@ export abstract class Commands {
     public static readonly MUTE = 'mute';
     public static readonly LIST_MUTED_USERS = 'listMutedUsers';
     public static readonly RELOAD_PARAMETERS = 'reloadParameters';
-
+    public static readonly KICK = 'kick';
+    public static readonly BAN = 'ban';
     
     public static readonly COMMANDS: string[] = [
         Commands.SET_PARAMETER,
@@ -21,6 +22,8 @@ export abstract class Commands {
         Commands.TIMED_MUTE,
         Commands.MUTE,
         Commands.LIST_MUTED_USERS,
-        Commands.RELOAD_PARAMETERS
+        Commands.RELOAD_PARAMETERS,
+        Commands.KICK,
+        Commands.BAN
     ];
 }

@@ -1,14 +1,13 @@
 import { Client, Message, RichEmbed, GuildMember } from "discord.js";
 import { TsuParameters } from "../main";
 import { CommandBase } from "./commandBase";
-import { MutedUsers } from "../entity/mutedUsers";
 
-export class UnmuteCommand extends CommandBase {
+export class BanCommand extends CommandBase {
     isAdminCommand = true;
 
     private HELP_MESSAGE = new RichEmbed( {
-        title: "Unmute Command",
-        description: "Command syntax:\nts!unmute **@user**",
+        title: "Ban Command",
+        description: "Command syntax:\nts!ban **@user**",
         thumbnail: {
             url: 'https://banner2.kisspng.com/20180329/iuq/kisspng-question-mark-white-computer-icons-clip-art-question-mark-5abc8e7b8cc5f5.2576999515223066835766.jpg'
         },
@@ -32,35 +31,20 @@ export class UnmuteCommand extends CommandBase {
 
         if (!this.CheckParameters(user)) {
             return;
-        }
-
-        if (!this.DeleteFromDB(user)) {
-            return;
-        }
+        }        
         
-        this.UnmuteUser(user);        
+        this.BanUser(user);        
     }    
 
-    private UnmuteUser(user: GuildMember) {
-        user.removeRole(this.parameters.Roles.MUTED);
-        this.SendDeletableMessage(`${user} has been unmuted`);
-        this.logChannel.send(this.BuildEmbedLogMessage(`Mute removed`, `${user} has been unmuted`));
-    }
-
-    private DeleteFromDB(user: GuildMember): boolean {
-        try {
-            MutedUsers.delete( { userID: user.id } );            
-        }
-        catch (ex) {
-            this.SendDeletableMessage(`Error deleting from database. Aborting.\n${ex}`);
-            return false;
-        }
-        return true;
+    private BanUser(user: GuildMember) {
+        user.ban();
+        this.SendDeletableMessage(`${user} has been banned`);
+        this.logChannel.send(this.BuildEmbedLogMessage(`Mute removed`, `${user} has been banned`));
     }
 
     private CheckParameters(user: GuildMember) {        
         if (user === null) {
-            this.SendDeletableMessage(`You haven't selected user to unmute. Please take a look on \`ts!unmute -h\``);            
+            this.SendDeletableMessage(`You haven't selected user to ban. Please take a look on \`ts!ban -h\``);
             return false;
         }
 

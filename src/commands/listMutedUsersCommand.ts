@@ -1,7 +1,6 @@
 import { CommandBase } from "./commandBase";
 import { Client, Message } from "discord.js";
 import { TsuParameters } from "..";
-import { ParametersConstants } from "../common/constants/index";
 import { MutedUsers } from "../entity";
 
 export class ListMutedUsersCommand extends CommandBase{

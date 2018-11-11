@@ -43,7 +43,7 @@ export class MuteCommand extends CommandBase {
 
     private MuteUser(user: GuildMember) {
         user.addRole(this.parameters.Roles.MUTED);
-        this.SendDeletableMessage(`${user} is muted permanently`);
+        this.SendDeletableMessage(`${user} has been muted permanently`);
         this.logChannel.send(this.BuildEmbedLogMessage(`Mute applied`, `${user} has been muted permanently`));
     }
 

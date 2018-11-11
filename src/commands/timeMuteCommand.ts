@@ -1,9 +1,7 @@
-import { Client, Message, RichEmbed, GuildMember, TextChannel } from "discord.js";
+import { Client, Message, RichEmbed, GuildMember } from "discord.js";
 import { TsuParameters } from "../main";
 import { CommandBase } from "./commandBase";
-import { MessageConstants, ParametersConstants } from "../common/constants/index";
-import { Parameters, Roles } from "../entity";
-import { print } from "util";
+import { MessageConstants } from "../common/constants/index";
 import { MutedUsers } from "../entity/mutedUsers";
 import moment = require("moment");
 
@@ -79,7 +77,7 @@ export class TimeMuteCommand extends CommandBase {
 
     private MuteUser(user: GuildMember, objDate: Date) {
         user.addRole(this.parameters.Roles.MUTED);
-        this.SendDeletableMessage(`${user} is muted until ${objDate.toLocaleString()}`);                 
+        this.SendDeletableMessage(`${user} has been muted until ${objDate.toLocaleString()}`);                 
         this.logChannel.send(this.BuildEmbedLogMessage(`Timed mute applied`, `${user} has been muted until ${objDate.toLocaleString()}`));
     }
 

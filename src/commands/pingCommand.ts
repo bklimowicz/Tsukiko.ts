@@ -1,6 +1,6 @@
 import { CommandBase } from "./commandBase";
 import { Client, Message } from "discord.js";
-import { TsuParameters, MessageConstants } from "..";
+import { TsuParameters } from "..";
 
 export class PingCommand extends CommandBase{
     isAdminCommand = true;

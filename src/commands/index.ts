@@ -7,3 +7,4 @@ export * from './timeMuteCommand';
 export * from './muteCommand';
 export * from './listMutedUsersCommand';
 export * from './unmuteCommand';
+export * from './banCommand';

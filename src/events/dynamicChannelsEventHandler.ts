@@ -13,11 +13,11 @@ export class DynamicChannelsEventHandler extends EventBase{
 
     protected RegisterEvent() {
         this.client.on('tick', (date: Date) => {
-            this.client.guilds.get(this.parameters.GUILD_ID).channels.forEach(channel => {
+            this.client.guilds.get(this.parameters.GUILD_ID).channels.forEach(async channel => {
                 if (channel.type !== ChannelType.VOICE) return;
-                if (this.ShouldCreateNewChannel(channel as VoiceChannel)) {
+                if (this.ShouldCreateNewChannel(channel as VoiceChannel)) {                                
                     new ForVoiceTextChannel(this.client, this.parameters, channel, `tsu${channel.name.replace(' ', '')}`);
-                }
+                }                
     
                 if (this.ShouldDeleteChannel(channel as VoiceChannel)) {                                        
                     ForVoiceChannels.findOne( { correspondingVoiceChannelID: channel.id } ).then(record => {
@@ -32,8 +32,10 @@ export class DynamicChannelsEventHandler extends EventBase{
         });
     }
 
-    private ShouldCreateNewChannel(channel: VoiceChannel): boolean {
-        if (channel.members.size > 0 && !this.ChannelAlreadyExists(channel)) return true;
+    private ShouldCreateNewChannel(channel: VoiceChannel): boolean { 
+        if (!this.ChannelAlreadyExists(channel) && channel.members.size > 0) {            
+            return true;
+        }        
         return false;
     }
 
@@ -43,10 +45,10 @@ export class DynamicChannelsEventHandler extends EventBase{
     }
 
     private ChannelAlreadyExists(channel: VoiceChannel): boolean {
-        ForVoiceChannels.findOne( { correspondingVoiceChannelID: channel.id } ).then(records => {
-            if (records !== null || records !== undefined) return true;
-        });
-        return false;
+        ForVoiceChannels.findOne( { correspondingVoiceChannelID: channel.id } ).then(records => {            
+            return true;            
+        });        
+        return false;        
     }
 }
 
