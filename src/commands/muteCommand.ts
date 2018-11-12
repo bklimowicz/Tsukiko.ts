@@ -8,7 +8,7 @@ export class MuteCommand extends CommandBase {
 
     private HELP_MESSAGE = new RichEmbed( {
         title: "Mute Command",
-        description: "Command syntax:\nts!mute **@user**",
+        description: "Command syntax:\nts!mute **[@user]**",
         thumbnail: {
             url: 'https://banner2.kisspng.com/20180329/iuq/kisspng-question-mark-white-computer-icons-clip-art-question-mark-5abc8e7b8cc5f5.2576999515223066835766.jpg'
         },

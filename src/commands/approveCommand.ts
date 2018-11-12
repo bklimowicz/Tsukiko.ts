@@ -2,15 +2,14 @@ import { CommandBase } from "./commandBase";
 import { Client, Message, RichEmbed, TextChannel } from "discord.js";
 import { TsuParameters } from "..";
 import { Suggestions } from "../entity";
-import { MessageConstants } from "../common";
-import { ApprovalConstants } from "../common/constants/approvalConstants";
+import { MessageConstants, ApprovalConstants } from "../common/constants/index";
 
 export class ApproveCommand extends CommandBase{
     isAdminCommand = false;
 
     private HELP_MESSAGE = new RichEmbed( {
         title: "Approve Suggestion Command",
-        description: "Command syntax:\nts!approveSuggestion **SuggestionID as given on the list** **switch**\nUse -y as switch parameter for approval\nUse -n as switch parameter for denial",
+        description: "Command syntax:\nts!approveSuggestion **[SuggestionID as given on the list]** **[switch]**\nUse -y as switch parameter for approval\nUse -n as switch parameter for denial",
         thumbnail: {
             url: 'https://banner2.kisspng.com/20180329/iuq/kisspng-question-mark-white-computer-icons-clip-art-question-mark-5abc8e7b8cc5f5.2576999515223066835766.jpg'
         },
@@ -21,6 +20,10 @@ export class ApproveCommand extends CommandBase{
         super(client, parameters, message);
                 
         if (!this.CanUseCommand(message.author)) return;
+        if (message.content.endsWith(' -h')) {
+            this.SendDeletableMessage(this.HELP_MESSAGE);
+            return;
+        }
                 
         this.ExecuteCommand();
     }
@@ -51,12 +54,18 @@ export class ApproveCommand extends CommandBase{
     
     private Deny(suggestionID: number): any {
         Suggestions.findOne( { id: suggestionID} ).then((record) => {
+            if (record === null || record === undefined) {
+                this.SendDeletableMessage(`You have selected wrong suggestion id`);
+                return;
+            }
             const user = this.client.guilds.get(this.parameters.GUILD_ID).members.get(record.authorID);
             user.send(`Your suggestion has not been approved`);
             this.logChannel.send(this.BuildEmbedLogMessage(`Suggestion denial`, `${user} suggestion has been denied`))
+            this.SendDeletableMessage(`Denied suggestion no. ${record.id}`);
         });
 
         Suggestions.delete( { id: suggestionID} );
+
     }
     
     private Approve(suggestionID: number): any {
@@ -64,10 +73,14 @@ export class ApproveCommand extends CommandBase{
         const suggestionsChannel = this.client.guilds.get(this.parameters.GUILD_ID).channels.get(suggestionsChannelID) as TextChannel;
 
         Suggestions.findOne( { id: suggestionID} ).then(record => {
+            if (record === null || record === undefined) {
+                this.SendDeletableMessage(`You have selected wrong suggestion id`);
+                return;
+            }
             const user = this.client.guilds.get(this.parameters.GUILD_ID).members.get(record.authorID);
             user.send(`Your suggestion has been approved`);
             const suggestionMessage = new RichEmbed({
-                title: `${record.id}. By ${user}`,
+                title: `${record.id}. By ${user.displayName}`,
                 description: `${record.suggestionContent}`,
                 color: this.parameters.EMBEDED_COLOR
             });
@@ -76,23 +89,24 @@ export class ApproveCommand extends CommandBase{
                 message.react("👎");
             });
             this.logChannel.send(this.BuildEmbedLogMessage(`Suggestion approval`, `${user} suggestion has been approved`));
+            this.SendDeletableMessage(`Approved suggestion no. ${record.id}`);
         });
 
         Suggestions.delete( { id: suggestionID} );
     }
 
-    private CheckParameters(suggestionID: number, approveSwitch: string): boolean {
+    private CheckParameters(suggestionID: number, approvalSwitch: string): boolean {
         if (suggestionID === null || suggestionID === undefined) {
             this.SendDeletableMessage(`You haven't selected suggestion. Please take a look on \`ts!approveSuggestion -h\``);
             return false;
         }
 
-        if (approveSwitch === null || approveSwitch === undefined) {
+        if (approvalSwitch === null || approvalSwitch === undefined) {
             this.SendDeletableMessage(`You haven't selected approval switch. Please take a look on \`ts!approveSuggestion -h\``);
             return false;
         }
 
-        if (approveSwitch !== ApprovalConstants.APPROVAL_CONFIRMATION || ApprovalConstants.APPROVAL_DENIAL) {
+        if (approvalSwitch !== ApprovalConstants.APPROVAL_CONFIRMATION && approvalSwitch !== ApprovalConstants.APPROVAL_DENIAL) {
             this.SendDeletableMessage(`You have selected wrong approval switch. Please take a look on \`ts!approveSuggestion -h\``);
             return false;
         }

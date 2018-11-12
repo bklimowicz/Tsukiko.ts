@@ -10,7 +10,7 @@ export class TimeMuteCommand extends CommandBase {
 
     private HELP_MESSAGE = new RichEmbed( {
         title: "Timed Mute Command",
-        description: "Command syntax:\nts!timedMute **@user** **DD.MM-hh:mm**\n**Date format:** D-Day, M-Month\n**Time format:** h-hour, m-minute",
+        description: "Command syntax:\nts!timedMute **[@user]** **[DD.MM-hh:mm]**\n**Date format:** D-Day, M-Month\n**Time format:** h-hour, m-minute",
         thumbnail: {
             url: 'https://banner2.kisspng.com/20180329/iuq/kisspng-question-mark-white-computer-icons-clip-art-question-mark-5abc8e7b8cc5f5.2576999515223066835766.jpg'
         },

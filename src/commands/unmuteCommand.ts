@@ -8,7 +8,7 @@ export class UnmuteCommand extends CommandBase {
 
     private HELP_MESSAGE = new RichEmbed( {
         title: "Unmute Command",
-        description: "Command syntax:\nts!unmute **@user**",
+        description: "Command syntax:\nts!unmute **[@user]**",
         thumbnail: {
             url: 'https://banner2.kisspng.com/20180329/iuq/kisspng-question-mark-white-computer-icons-clip-art-question-mark-5abc8e7b8cc5f5.2576999515223066835766.jpg'
         },

@@ -21,9 +21,9 @@ export class ListSuggestionsCommand extends CommandBase{
                 this.message.channel.send(`There is no new suggestions for review`);
             }
             
-            records.forEach((record, indexer) => {
+            records.forEach((record) => {
                 const user = this.client.guilds.get(this.parameters.GUILD_ID).members.get(record.authorID);
-                suggestionsList += `\n${indexer}. Author: ${user}.\nContent: ${record.suggestionContent}\n******`
+                suggestionsList += `\n${record.id}. Author: ${user}.\nContent: ${record.suggestionContent}\n******`
             });
             this.message.channel.send(suggestionsList);   
         });

@@ -1,7 +1,7 @@
 import { Client, Message, RichEmbed, User } from "discord.js";
 import { TsuParameters } from "../main";
 import { CommandBase } from "./commandBase";
-import { MessageConstants } from "../common";
+import { MessageConstants } from "../common/constants/index";
 import { Suggestions } from "../entity";
 
 export class SuggestCommand extends CommandBase {
@@ -9,7 +9,7 @@ export class SuggestCommand extends CommandBase {
 
     private HELP_MESSAGE = new RichEmbed( {
         title: "Suggest Command",
-        description: "Command syntax:\nts!suggest **your suggestion**",
+        description: "Command syntax:\nts!suggest **[your suggestion]**",
         thumbnail: {
             url: 'https://banner2.kisspng.com/20180329/iuq/kisspng-question-mark-white-computer-icons-clip-art-question-mark-5abc8e7b8cc5f5.2576999515223066835766.jpg'
         },
