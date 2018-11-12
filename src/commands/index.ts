@@ -8,3 +8,6 @@ export * from './muteCommand';
 export * from './listMutedUsersCommand';
 export * from './unmuteCommand';
 export * from './banCommand';
+export * from './listSuggestionsCommand';
+export * from './suggestCommand';
+export * from './approveCommand';

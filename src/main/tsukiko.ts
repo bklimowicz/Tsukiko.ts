@@ -23,10 +23,10 @@ export class Tsukiko {
     }    
 
     private SetupEvents() {
-    //    new ReadyEventHandler(this.client, this.parameters);
+        //new ReadyEventHandler(this.client, this.parameters);
         new MessageEventHandler(this.client, this.parameters);
         new UnmuteEventHandler(this.client, this.parameters);
-        new DynamicChannelsEventHandler(this.client, this.parameters);
+        //new DynamicChannelsEventHandler(this.client, this.parameters);
     }
 
     private LoginSync() {

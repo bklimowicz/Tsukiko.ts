@@ -25,14 +25,18 @@ export abstract class CommandBase {
         
         var guildMember = this.client.guilds.get(this.parameters.GUILD_ID).members.get(author.id) as GuildMember;
 
-        if (!(guildMember.roles.has(this.parameters.Roles.ADMIN)
-            || guildMember.roles.has(this.parameters.Roles.MOD)
-            || guildMember.roles.has(this.parameters.Roles.TECHNICIAN))) {
+        if (!this.isPrivilegedMember(guildMember)) {
                 this.SendDeletableMessage(`Not enough privileges to use this command`);
                 return false;
-            }
+        }
 
         return true;
+    }
+
+    protected isPrivilegedMember(guildMember: GuildMember) {
+        return guildMember.roles.has(this.parameters.Roles.ADMIN)
+            || guildMember.roles.has(this.parameters.Roles.MOD)
+            || guildMember.roles.has(this.parameters.Roles.TECHNICIAN);
     }
 
     protected SendDeletableMessage(message: string | RichEmbed | MessageOptions | Attachment) {

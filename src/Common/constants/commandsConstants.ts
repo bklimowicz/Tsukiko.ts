@@ -13,6 +13,9 @@ export abstract class Commands {
     public static readonly RELOAD_PARAMETERS = 'reloadParameters';
     public static readonly KICK = 'kick';
     public static readonly BAN = 'ban';
+    public static readonly SUGGEST = 'suggest';
+    public static readonly LIST_SUGGESTIONS = 'suggestions';
+    public static readonly APPROVE_SUGGESTION = 'approveSuggestion';
     
     public static readonly COMMANDS: string[] = [
         Commands.SET_PARAMETER,
@@ -24,6 +27,9 @@ export abstract class Commands {
         Commands.LIST_MUTED_USERS,
         Commands.RELOAD_PARAMETERS,
         Commands.KICK,
-        Commands.BAN
+        Commands.BAN,
+        Commands.SUGGEST,
+        Commands.LIST_SUGGESTIONS,
+        Commands.APPROVE_SUGGESTION
     ];
 }

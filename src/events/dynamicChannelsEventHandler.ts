@@ -13,7 +13,7 @@ export class DynamicChannelsEventHandler extends EventBase{
 
     protected RegisterEvent() {
         this.client.on('tick', (date: Date) => {
-            this.client.guilds.get(this.parameters.GUILD_ID).channels.forEach(async channel => {
+            this.client.guilds.get(this.parameters.GUILD_ID).channels.forEach(channel => {
                 if (channel.type !== ChannelType.VOICE) return;
                 if (this.ShouldCreateNewChannel(channel as VoiceChannel)) {                                
                     new ForVoiceTextChannel(this.client, this.parameters, channel, `tsu${channel.name.replace(' ', '')}`);

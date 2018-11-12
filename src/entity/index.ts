@@ -5,3 +5,4 @@ export * from './channels';
 export * from './mutedUsers';
 export * from './users';
 export * from './forVoiceChannels';
+export * from './suggestions';

@@ -3,7 +3,7 @@ import { Client, Message } from "discord.js";
 import { TsuParameters } from "../main";
 import { Commands, MessageConstants } from "../common/constants/index";
 import { SetParameterCommand } from "../commands/setParameterCommand";
-import { PingCommand, GetParameterCommand, ListParametersCommand, ReloadParametersCommand, BanCommand } from "../commands";
+import { PingCommand, GetParameterCommand, ListParametersCommand, ReloadParametersCommand, BanCommand, ListSuggestionsCommand, SuggestCommand, ApproveCommand } from "../commands";
 import { TimeMuteCommand } from "../commands/timeMuteCommand";
 import { MuteCommand } from "../commands/muteCommand";
 import { ListMutedUsersCommand } from "../commands/listMutedUsersCommand";
@@ -59,6 +59,15 @@ export class MessageEventHandler extends EventBase {
                 break;
             case Commands.BAN:
                 new BanCommand(this.client, this.parameters, message);
+                break;
+            case Commands.APPROVE_SUGGESTION:
+                new ApproveCommand(this.client, this.parameters, message);
+                break;
+            case Commands.SUGGEST:
+                new SuggestCommand(this.client, this.parameters, message);
+                break;
+            case Commands.LIST_SUGGESTIONS:
+                new ListSuggestionsCommand(this.client, this.parameters, message);
                 break;
             default:
                 message.reply("This is not a command.");
