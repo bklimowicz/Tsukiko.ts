@@ -97,7 +97,7 @@ export class TimeMuteCommand extends CommandBase {
 
     private CheckParameters(user: GuildMember, date: Date) {        
         if (user === null) {
-            this.SendDeletableMessage(`You haven't selected user to mute. Please take a look on \`ts!timedMute -h\``);            
+            this.SendDeletableMessage(`You haven't selected user to mute. Please take a look on \`ts!timedMute -h\``);
             return false;
         }
 

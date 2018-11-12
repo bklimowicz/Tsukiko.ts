@@ -67,6 +67,13 @@ export class TsuParameters {
             }
             this.Channels.GENERAL_CHANNEL = record.channelID;
         });
+
+        Channels.findOne({ channelName: ParametersKeysConstants.SUGGESTIONS_CHANNEL }).then(record => {
+            if (record === null || record === undefined) {
+                return;
+            }
+            this.Channels.SUGGESTIONS_CHANNEL = record.channelID;
+        });
     }
 
     private LoadRoles() {

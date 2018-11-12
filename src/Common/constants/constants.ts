@@ -10,6 +10,7 @@ export abstract class ParametersKeysConstants {
     public static readonly BOT_CHANNEL = 'botChannel';
     public static readonly LOG_CHANNEL = 'logChannel';
     public static readonly GENERAL_CHANNEL = 'generalChannel';
+    public static readonly SUGGESTIONS_CHANNEL = 'suggestionsChannel';
     
     public static readonly ADMIN_ROLE_NAME = 'Admin';
     public static readonly MOD_ROLE_NAME = 'Mod';
