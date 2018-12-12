@@ -1,6 +1,4 @@
-import { Logger, ParametersKeysConstants } from '../common';
-import { Client, Guild, Collection } from 'discord.js';
-import { ReadyEventHandler } from '../events/readyEventHandler';
+import { Client } from 'discord.js';
 import { MessageEventHandler, UnmuteEventHandler, DynamicChannelsEventHandler } from '../events';
 import { TsuParameters } from '../common/parameters';
 
@@ -26,7 +24,7 @@ export class Tsukiko {
         //new ReadyEventHandler(this.client, this.parameters);
         new MessageEventHandler(this.client, this.parameters);
         new UnmuteEventHandler(this.client, this.parameters);
-        //new DynamicChannelsEventHandler(this.client, this.parameters);
+        new DynamicChannelsEventHandler(this.client, this.parameters);
     }
 
     private LoginSync() {
