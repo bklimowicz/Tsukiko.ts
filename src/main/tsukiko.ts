@@ -1,24 +1,30 @@
-import { Client } from 'discord.js';
+import { Client, Presence } from 'discord.js';
 import { MessageEventHandler, UnmuteEventHandler, DynamicChannelsEventHandler } from '../events';
 import { TsuParameters } from '../common/parameters';
 
-export class Tsukiko {    
+export class Tsukiko {
     private client: Client;
-    private parameters: TsuParameters;    
+    private parameters: TsuParameters;
 
-    constructor() {        
+    constructor() {
         this.client = new Client();
         this.InitBot();
     }
 
     private InitBot() {
-        this.parameters = new TsuParameters();        
+        this.parameters = new TsuParameters();
 
-        new Ticker(this.client, TickerStamps.DEBUG_MODE);        
-        
+        new Ticker(this.client, TickerStamps.HALF_MINUTE);
+
         this.LoginSync();
-        this.SetupEvents();        
-    }    
+        this.SetupEvents();
+        this.client.on('ready', () => {
+            this.client.user.setPresence({ game: { name: 'Version: ' + require('./../../package.json').version } })
+                .catch(err => {
+                    console.log(err);
+                });
+        })
+    }
 
     private SetupEvents() {
         //new ReadyEventHandler(this.client, this.parameters);
@@ -29,7 +35,7 @@ export class Tsukiko {
 
     private LoginSync() {
         this.parameters.GetToken().then(record => {
-            record ? this.client.login(record.value).then(_ => { console.log(`Logged in successfully.`)}) : console.log('No token provided');
+            record ? this.client.login(record.value).then(_ => { console.log(`Logged in successfully.`) }) : console.log('No token provided');
         });
     }
 }
@@ -75,5 +81,5 @@ class Ticker {
                 this.client.emit('tick', date);
             }, TickerStamps.DEBUG_MODE)
         }
-    }    
+    }
 }
