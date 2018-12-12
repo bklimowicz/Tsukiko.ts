@@ -1,8 +1,8 @@
-import { Parameters, Guild, Channels } from "../entity";
+import { Parameters, Guild, Channels } from "./../entity";
 import { ParametersKeysConstants } from "./constants/constants";
-import { Roles } from "../entity/roles";
-import { RolesContainer } from "../dataObjects/dataContainers/rolesContainer";
-import { ChannelsContainer } from "../dataObjects/dataContainers";
+import { Roles } from "./../entity/roles";
+import { RolesContainer } from "./../dataObjects/dataContainers/rolesContainer";
+import { ChannelsContainer } from "./../dataObjects/dataContainers";
 
 export class TsuParameters {
     public COMMAND_PREFIX: string; 

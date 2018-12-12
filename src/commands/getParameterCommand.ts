@@ -1,8 +1,8 @@
 import { Client, Message } from "discord.js";
-import { TsuParameters } from "../main";
+import { TsuParameters } from "./../main";
 import { CommandBase } from "./commandBase";
-import { MessageConstants } from "../common/constants/index";
-import { Parameters } from "../entity";
+import { MessageConstants } from "./../common/constants/index";
+import { Parameters } from "./../entity";
 
 export class GetParameterCommand extends CommandBase {
     isAdminCommand = true;

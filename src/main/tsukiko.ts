@@ -1,6 +1,6 @@
 import { Client, Presence } from 'discord.js';
-import { MessageEventHandler, UnmuteEventHandler, DynamicChannelsEventHandler } from '../events';
-import { TsuParameters } from '../common/parameters';
+import { MessageEventHandler, UnmuteEventHandler, DynamicChannelsEventHandler } from './../events';
+import { TsuParameters } from './../common/parameters';
 
 export class Tsukiko {
     private client: Client;

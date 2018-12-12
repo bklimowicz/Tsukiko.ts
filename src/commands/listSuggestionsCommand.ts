@@ -1,7 +1,7 @@
 import { CommandBase } from "./commandBase";
 import { Client, Message } from "discord.js";
-import { TsuParameters } from "..";
-import { Suggestions } from "../entity";
+import { TsuParameters } from "./..";
+import { Suggestions } from "./../entity";
 
 export class ListSuggestionsCommand extends CommandBase{
     isAdminCommand = false;

@@ -1,8 +1,8 @@
 import { CommandBase } from "./commandBase";
 import { Client, Message, RichEmbed, TextChannel } from "discord.js";
-import { TsuParameters } from "..";
-import { Suggestions } from "../entity";
-import { MessageConstants, ApprovalConstants } from "../common/constants/index";
+import { TsuParameters } from "./..";
+import { Suggestions } from "./../entity";
+import { MessageConstants, ApprovalConstants } from "./../common/constants/index";
 
 export class ApproveCommand extends CommandBase{
     isAdminCommand = false;

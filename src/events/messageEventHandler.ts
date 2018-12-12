@@ -1,13 +1,13 @@
 import { EventBase } from "./eventBase";
 import { Client, Message } from "discord.js";
-import { TsuParameters } from "../main";
-import { Commands, MessageConstants } from "../common/constants/index";
-import { SetParameterCommand } from "../commands/setParameterCommand";
-import { PingCommand, GetParameterCommand, ListParametersCommand, ReloadParametersCommand, BanCommand, ListSuggestionsCommand, SuggestCommand, ApproveCommand } from "../commands";
-import { TimeMuteCommand } from "../commands/timeMuteCommand";
-import { MuteCommand } from "../commands/muteCommand";
-import { ListMutedUsersCommand } from "../commands/listMutedUsersCommand";
-import { KickCommand } from "../commands/kickCommand";
+import { TsuParameters } from "./../main";
+import { Commands, MessageConstants } from "./../common/constants/index";
+import { SetParameterCommand } from "./../commands/setParameterCommand";
+import { PingCommand, GetParameterCommand, ListParametersCommand, ReloadParametersCommand, BanCommand, ListSuggestionsCommand, SuggestCommand, ApproveCommand } from "./../commands";
+import { TimeMuteCommand } from "./../commands/timeMuteCommand";
+import { MuteCommand } from "./../commands/muteCommand";
+import { ListMutedUsersCommand } from "./../commands/listMutedUsersCommand";
+import { KickCommand } from "./../commands/kickCommand";
 
 export class MessageEventHandler extends EventBase {
     constructor(client: Client, parameters: TsuParameters) {

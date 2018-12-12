@@ -1,7 +1,7 @@
 import { CommandBase } from "./commandBase";
 import { Client, Message } from "discord.js";
-import { TsuParameters } from "..";
-import { MutedUsers } from "../entity";
+import { TsuParameters } from "./..";
+import { MutedUsers } from "./../entity";
 
 export class ListMutedUsersCommand extends CommandBase{
     isAdminCommand = true;

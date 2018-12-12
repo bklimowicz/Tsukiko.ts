@@ -1,7 +1,7 @@
 import { EventBase } from "./eventBase";
-import { TsuParameters } from "..";
+import { TsuParameters } from "./..";
 import { Client } from "discord.js";
-import { MutedUsers } from "../entity";
+import { MutedUsers } from "./../entity";
 
 export class MessageEventHandler extends EventBase {
     constructor(client: Client, parameters: TsuParameters) {

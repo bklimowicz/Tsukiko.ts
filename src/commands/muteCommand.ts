@@ -1,7 +1,7 @@
 import { Client, Message, RichEmbed, GuildMember, TextChannel } from "discord.js";
-import { TsuParameters } from "../main";
+import { TsuParameters } from "./../main";
 import { CommandBase } from "./commandBase";
-import { MutedUsers } from "../entity/mutedUsers";
+import { MutedUsers } from "./../entity/mutedUsers";
 
 export class MuteCommand extends CommandBase {
     isAdminCommand = true;

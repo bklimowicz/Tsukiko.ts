@@ -1,8 +1,8 @@
 import { EventBase } from "./eventBase";
 import { Client, GuildChannel, VoiceChannel } from "discord.js";
-import { TsuParameters } from "../main";
-import { ForVoiceChannels } from "../entity";
-import { ChannelType } from "..";
+import { TsuParameters } from "./../main";
+import { ForVoiceChannels } from "./../entity";
+import { ChannelType } from "./..";
 
 export class DynamicChannelsEventHandler extends EventBase {
 

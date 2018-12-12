@@ -1,5 +1,5 @@
 import { Client, Message, RichEmbed, GuildMember } from "discord.js";
-import { TsuParameters } from "../main";
+import { TsuParameters } from "./../main";
 import { CommandBase } from "./commandBase";
 
 export class KickCommand extends CommandBase {

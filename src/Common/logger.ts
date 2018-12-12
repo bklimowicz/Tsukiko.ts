@@ -1,4 +1,4 @@
-import { ILogger } from "../interfaces";
+import { ILogger } from "./../interfaces";
 import { TextChannel } from "discord.js";
 import * as FS from 'fs';
 import { LoggerConstants } from "./constants/loggingConstants";
