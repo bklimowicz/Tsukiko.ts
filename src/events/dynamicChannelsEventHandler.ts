@@ -33,8 +33,7 @@ export class DynamicChannelsEventHandler extends EventBase {
     private ShouldCreateNewChannel(channel: VoiceChannel) {
         if (channel.members.size > 0) {
             ForVoiceChannels.findOne({ correspondingVoiceChannelID: channel.id }).then(record => {
-                if (record) {
-                    console.log(record);
+                if (record) {                    
                     return;
                 }
                 new ForVoiceTextChannel(this.client, this.parameters, channel, `tsu${channel.name.replace(' ', '')}`);
