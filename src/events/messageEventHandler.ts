@@ -70,7 +70,11 @@ export class MessageEventHandler extends EventBase {
                 new ListSuggestionsCommand(this.client, this.parameters, message);
                 break;
             default:
-                message.reply("This is not a command.");
+                message.reply("this is not a command.").then((_message: Message) => {
+                    setTimeout(() => {
+                        _message.delete();
+                    }, this.parameters.MESSAGE_DELETE_TIME);
+                });
         }
     }
 
