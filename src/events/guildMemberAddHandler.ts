@@ -11,7 +11,7 @@ export class GuildMemberAddHandler extends EventBase {
     protected RegisterEvent() {
         this.client.on('guildMemberAdd', (user) => {            
             this.GetGeneralChannel().send(`Witaj na M&A - Discord ${user}(${user.id})!`);
-            this.GetLogChannel().send(this.BuildEmbedLogMessage('Member Join.', `${user}(${user.id}) join the server.`));
+            this.GetLogChannel().send(this.BuildEmbedLogMessage('Member Joined.', `${user}(${user.id}) joined the server.`));
             MutedUsers.find( { userID: user.id } ).then(records => {            
                 if (records === null) return;
                 records.forEach(record => {
