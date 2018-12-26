@@ -9,7 +9,7 @@ export class GuildBanAddEventHandler extends EventBase {
     
     protected RegisterEvent() {
         this.client.on('guildBanAdd', (guild, user) => {
-            user.dmChannel.send(this.BuildEmbedLogMessage('Ban', `You were banned from ${guild.name}.`));
+            user.send(this.BuildEmbedLogMessage('Ban', `You were banned from ${guild.name}.`));
             this.GetLogChannel().send(this.BuildEmbedLogMessage(`Member Banned.`, `${user.username} was banned.`));
         });
     }    
