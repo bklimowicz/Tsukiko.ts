@@ -1,7 +1,7 @@
 import { EventBase } from "./eventBase";
 import { Client, Message } from "discord.js";
 import { TsuParameters } from "./../main";
-import { Commands, MessageConstants } from "./../common/constants/index";
+import { Commands, MessageConstants } from "./../Common/constants/index";
 import { SetParameterCommand } from "./../commands/setParameterCommand";
 import { PingCommand, GetParameterCommand, ListParametersCommand, ReloadParametersCommand, BanCommand, ListSuggestionsCommand, SuggestCommand, ApproveCommand } from "./../commands";
 import { TimeMuteCommand } from "./../commands/timeMuteCommand";

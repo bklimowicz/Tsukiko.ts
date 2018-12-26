@@ -1,2 +1,2 @@
 export * from './tsukiko';
-export * from './../common/parameters';
+export * from './../Common/parameters';

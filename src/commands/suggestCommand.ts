@@ -1,7 +1,7 @@
 import { Client, Message, RichEmbed, User } from "discord.js";
 import { TsuParameters } from "./../main";
 import { CommandBase } from "./commandBase";
-import { MessageConstants } from "./../common/constants/index";
+import { MessageConstants } from "./../Common/constants/index";
 import { Suggestions } from "./../entity";
 
 export class SuggestCommand extends CommandBase {

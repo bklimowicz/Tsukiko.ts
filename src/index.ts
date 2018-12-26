@@ -1,4 +1,4 @@
-export * from './common';
+export * from './Common';
 export * from './main';
 export * from './dataObjects';
 export * from './events';

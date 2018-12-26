@@ -1,6 +1,6 @@
 import { TsuParameters } from "./../main";
 import { Client, TextChannel, RichEmbed, MessageOptions, Attachment, Message } from "discord.js";
-import { Base } from "../common";
+import { Base } from "../Common";
 
 export abstract class EventBase extends Base {
     constructor(client: Client, parameters: TsuParameters) {

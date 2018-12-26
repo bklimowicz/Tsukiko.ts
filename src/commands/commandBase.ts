@@ -1,4 +1,4 @@
-import { TsuParameters, Base } from "./../common";
+import { TsuParameters, Base } from "./../Common";
 import { Client, Message, User, GuildMember, RichEmbed, MessageOptions, Attachment } from "discord.js";
 
 export abstract class CommandBase extends Base {    

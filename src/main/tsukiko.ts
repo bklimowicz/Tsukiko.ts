@@ -1,6 +1,6 @@
 import { Client } from 'discord.js';
 import { MessageEventHandler, UnmuteEventHandler, DynamicChannelsEventHandler, ReadyEventHandler, ChannelCreatedEventHandler, DisconnectEventHandler, ChannelDeleteEventHandler, ErrorEventHandler, GuildBanAddEventHandler, GuildBanRemoveEventHandler, GuildMemberRemoveEventHandler, GuildMemberAddHandler, MessageDeleteEventHandler, MessageUpdateEventHandler } from './../events';
-import { TsuParameters } from './../common/parameters';
+import { TsuParameters } from './../Common/parameters';
 
 export class Tsukiko {
     private client: Client;

@@ -1,6 +1,6 @@
 import { EventBase } from "./eventBase";
 import { Channel, TextChannel, Client } from "discord.js";
-import { ChannelType, TsuParameters } from "../common";
+import { ChannelType, TsuParameters } from "../Common";
 
 export class ChannelCreatedEventHandler extends EventBase {
     constructor(client: Client, parameters: TsuParameters) {
