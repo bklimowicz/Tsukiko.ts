@@ -1,27 +1,25 @@
-import { TsuParameters } from "./../common";
-import { Client, Message, User, GuildMember, RichEmbed, MessageOptions, Attachment, TextChannel } from "discord.js";
+import { TsuParameters, Base } from "./../common";
+import { Client, Message, User, GuildMember, RichEmbed, MessageOptions, Attachment } from "discord.js";
 
-export abstract class CommandBase {    
+export abstract class CommandBase extends Base {    
     protected isAdminCommand: boolean;
     protected client: Client;
     protected parameters: TsuParameters;
     protected message: Message;
-    protected logChannel: TextChannel;
 
     constructor(client: Client, parameters: TsuParameters, message: Message)
     {
-        this.client = client;
-        this.parameters = parameters;
-        this.message = message;
-        this.logChannel = this.client.channels.get(this.parameters.Channels.LOG_CHANNEL) as TextChannel; 
+        super(client, parameters);        
+        this.message = message;        
     }
 
     protected CanUseCommand(author: User): boolean {
         if (!this.isAdminCommand) return true;
 
-        // Make here command for szyk just in case
-        // const myUserID = 
-        // if (author.id = )
+        // SZK EXCLUSIVE USEAGE START
+        const myUserID = this.GetUser("225521387480154112").user.id;
+        if (author.id === myUserID) return true;
+        // SZK EXCLUSIVE USEAGE END
         
         var guildMember = this.client.guilds.get(this.parameters.GUILD_ID).members.get(author.id) as GuildMember;
 

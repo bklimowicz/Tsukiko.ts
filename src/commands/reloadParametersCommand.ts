@@ -16,6 +16,6 @@ export class ReloadParametersCommand extends CommandBase{
     protected ExecuteCommand() {
         this.parameters.ReloadParameters();
         this.SendDeletableMessage(`Parameters reloaded`);
-        this.logChannel.send(this.BuildEmbedLogMessage('Parameters reload', 'Parameters reloaded successfully'));
+        this.GetLogChannel().send(this.BuildEmbedLogMessage('Parameters reload', 'Parameters reloaded successfully'));
     }
 }

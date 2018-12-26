@@ -39,7 +39,7 @@ export class KickCommand extends CommandBase {
     private BanUser(user: GuildMember) {
         user.kick();
         this.SendDeletableMessage(`${user} has been kicked`);
-        this.logChannel.send(this.BuildEmbedLogMessage(`Mute removed`, `${user} has been kicked`));
+        this.GetLogChannel().send(this.BuildEmbedLogMessage(`Mute removed`, `${user} has been kicked`));
     }
 
     private CheckParameters(user: GuildMember) {        

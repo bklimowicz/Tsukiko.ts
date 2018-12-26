@@ -12,7 +12,7 @@ import { KickCommand } from "./../commands/kickCommand";
 export class MessageEventHandler extends EventBase {
     constructor(client: Client, parameters: TsuParameters) {
         super(client, parameters);        
-    }    
+    }
     
     protected RegisterEvent() {
         this.client.on('message', message => {            
@@ -21,7 +21,7 @@ export class MessageEventHandler extends EventBase {
             }
             
             this.commandFactory(message);
-        });
+        });        
     }
 
     commandFactory(message: Message) {

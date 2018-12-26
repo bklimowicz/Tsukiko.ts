@@ -60,7 +60,7 @@ export class ApproveCommand extends CommandBase{
             }
             const user = this.client.guilds.get(this.parameters.GUILD_ID).members.get(record.authorID);
             user.send(`Your suggestion has not been approved`);
-            this.logChannel.send(this.BuildEmbedLogMessage(`Suggestion denial`, `${user} suggestion has been denied`))
+            this.GetLogChannel().send(this.BuildEmbedLogMessage(`Suggestion denial`, `${user} suggestion has been denied`))
             this.SendDeletableMessage(`Denied suggestion no. ${record.id}`);
         });
 
@@ -88,7 +88,7 @@ export class ApproveCommand extends CommandBase{
                 message.react("👍");
                 message.react("👎");
             });
-            this.logChannel.send(this.BuildEmbedLogMessage(`Suggestion approval`, `${user} suggestion has been approved`));
+            this.GetLogChannel().send(this.BuildEmbedLogMessage(`Suggestion approval`, `${user} suggestion has been approved`));
             this.SendDeletableMessage(`Approved suggestion no. ${record.id}`);
         });
 

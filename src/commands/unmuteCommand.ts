@@ -44,7 +44,7 @@ export class UnmuteCommand extends CommandBase {
     private UnmuteUser(user: GuildMember) {
         user.removeRole(this.parameters.Roles.MUTED);
         this.SendDeletableMessage(`${user} has been unmuted`);
-        this.logChannel.send(this.BuildEmbedLogMessage(`Mute removed`, `${user} has been unmuted`));
+        this.GetLogChannel().send(this.BuildEmbedLogMessage(`Mute removed`, `${user} has been unmuted`));
     }
 
     private DeleteFromDB(user: GuildMember): boolean {

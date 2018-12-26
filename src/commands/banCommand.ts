@@ -39,7 +39,7 @@ export class BanCommand extends CommandBase {
     private BanUser(user: GuildMember) {
         user.ban();
         this.SendDeletableMessage(`${user} has been banned`);
-        this.logChannel.send(this.BuildEmbedLogMessage(`Mute removed`, `${user} has been banned`));
+        //this.GetLogChannel().send(this.BuildEmbedLogMessage(`Mute removed`, `${user} has been banned`));
     }
 
     private CheckParameters(user: GuildMember) {        

@@ -1,16 +1,13 @@
 import { TsuParameters } from "./../main";
 import { Client, TextChannel, RichEmbed, MessageOptions, Attachment, Message } from "discord.js";
+import { Base } from "../common";
 
-export abstract class EventBase{
+export abstract class EventBase extends Base{
     protected client: Client;
-    protected parameters: TsuParameters;
-    protected logChannel: TextChannel;
+    protected parameters: TsuParameters;    
 
     constructor(client: Client, parameters: TsuParameters) {
-        this.client = client;
-        this.parameters = parameters;
-        this.logChannel = this.logChannel = this.client.channels.get(this.parameters.Channels.LOG_CHANNEL) as TextChannel;
-
+        super(client, parameters);
         this.RegisterEvent();
     }
 

@@ -31,7 +31,7 @@ export class SetParameterCommand extends CommandBase {
                     newParam.save();
                 }
                 this.SendDeletableMessage(`Parameter set`);
-                this.logChannel.send(this.BuildEmbedLogMessage(`Parameter set`, `${paramName} set to value: ${paramValue}`))            
+                this.GetLogChannel().send(this.BuildEmbedLogMessage(`Parameter set`, `${paramName} set to value: ${paramValue}`))            
             });
         }
         else {

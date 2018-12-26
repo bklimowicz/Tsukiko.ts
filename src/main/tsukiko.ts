@@ -1,5 +1,5 @@
-import { Client, Presence } from 'discord.js';
-import { MessageEventHandler, UnmuteEventHandler, DynamicChannelsEventHandler } from './../events';
+import { Client } from 'discord.js';
+import { MessageEventHandler, UnmuteEventHandler, DynamicChannelsEventHandler, ReadyEventHandler, ChannelCreatedEventHandler, DisconnectEventHandler, ChannelDeleteEventHandler, ErrorEventHandler, GuildBanAddEventHandler, GuildBanRemoveEventHandler, GuildMemberRemoveEventHandler, GuildMemberAddHandler, MessageDeleteEventHandler, MessageUpdateEventHandler } from './../events';
 import { TsuParameters } from './../common/parameters';
 
 export class Tsukiko {
@@ -28,9 +28,19 @@ export class Tsukiko {
 
     private SetupEvents() {
         //new ReadyEventHandler(this.client, this.parameters);
+        new DisconnectEventHandler(this.client, this.parameters);
         new MessageEventHandler(this.client, this.parameters);
         new UnmuteEventHandler(this.client, this.parameters);
         new DynamicChannelsEventHandler(this.client, this.parameters);
+        new ChannelCreatedEventHandler(this.client, this.parameters);
+        new ChannelDeleteEventHandler(this.client, this.parameters);
+        new ErrorEventHandler(this.client, this.parameters);
+        new GuildBanAddEventHandler(this.client, this.parameters);
+        new GuildBanRemoveEventHandler(this.client, this.parameters);
+        new GuildMemberAddHandler(this.client, this.parameters);
+        new GuildMemberRemoveEventHandler(this.client, this.parameters);
+        new MessageDeleteEventHandler(this.client, this.parameters);
+        new MessageUpdateEventHandler(this.client, this.parameters);
     }
 
     private LoginSync() {

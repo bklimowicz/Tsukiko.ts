@@ -16,13 +16,13 @@ export class UnmuteEventHandler extends EventBase{
                         const user = this.client.guilds.get(this.parameters.GUILD_ID).members.get(record.userID);                                            
 
                         if (user === null || user === undefined) {
-                            this.logChannel.send(this.BuildEmbedLogMessage(`Timed mute error`, `Could not find user id in database.`))
+                            this.GetLogChannel().send(this.BuildEmbedLogMessage(`Timed mute error`, `Could not find user id in database.`))
                             return;
                         }
                         
                         record.remove().then(() => {
                             user.removeRole(this.parameters.Roles.MUTED).then(_user => {                                
-                                this.logChannel.send(this.BuildEmbedLogMessage(`Timed mute removed`, `${user} has been unmuted.`));
+                                this.GetLogChannel().send(this.BuildEmbedLogMessage(`Timed mute removed`, `${user} has been unmuted.`));
                             });
                         });
                     }

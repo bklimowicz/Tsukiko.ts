@@ -78,7 +78,7 @@ export class TimeMuteCommand extends CommandBase {
     private MuteUser(user: GuildMember, objDate: Date) {
         user.addRole(this.parameters.Roles.MUTED);
         this.SendDeletableMessage(`${user} has been muted until ${objDate.toLocaleString()}`);                 
-        this.logChannel.send(this.BuildEmbedLogMessage(`Timed mute applied`, `${user} has been muted until ${objDate.toLocaleString()}`));
+        this.GetLogChannel().send(this.BuildEmbedLogMessage(`Timed mute applied`, `${user} has been muted until ${objDate.toLocaleString()}`));
     }
 
     private InsertToDB(user: GuildMember, objDate: Date): boolean {        

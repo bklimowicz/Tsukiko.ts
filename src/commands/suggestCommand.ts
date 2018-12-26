@@ -54,7 +54,7 @@ export class SuggestCommand extends CommandBase {
 
     private FinalizeSuggestionCommand(user): any {        
         this.SendDeletableMessage(`Your suggestion will be reviewed shortly`);
-        this.logChannel.send(this.BuildEmbedLogMessage(`Suggestion made`, `${user} has made a suggestion`));
+        this.GetLogChannel().send(this.BuildEmbedLogMessage(`Suggestion made`, `${user} has made a suggestion`));
     }
 
     private InsertToDB(user: User, suggestionContent: string): boolean {

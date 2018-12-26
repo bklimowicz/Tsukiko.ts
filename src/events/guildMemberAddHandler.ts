@@ -3,18 +3,15 @@ import { TsuParameters } from "./..";
 import { Client } from "discord.js";
 import { MutedUsers } from "./../entity";
 
-export class MessageEventHandler extends EventBase {
+export class GuildMemberAddHandler extends EventBase {
     constructor(client: Client, parameters: TsuParameters) {
         super(client, parameters);        
     }    
     
     protected RegisterEvent() {
-        this.client.on('guildMemberAdd', (user) => {
-
-            // Greet him here then look up the MutedUsers table and if he's there, mute the fuck out of him
-
-
-
+        this.client.on('guildMemberAdd', (user) => {            
+            this.GetGeneralChannel().send(`Witaj na M&A - Discord ${user.nickname}(${user.id})!`);
+            this.GetLogChannel().send(this.BuildEmbedLogMessage('Member Join.', `${user.nickname}(${user.id}) join the server.`));
             MutedUsers.find( { userID: user.id } ).then(records => {            
                 if (records === null) return;
                 records.forEach(record => {
