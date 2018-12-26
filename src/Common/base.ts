@@ -9,6 +9,7 @@ export abstract class Base {
         this.client = client;
         this.parameters = parameters;        
     }
+
     protected GetUser(userID: string): GuildMember {
         return this.client.guilds.get(this.parameters.GUILD_ID).members.get(userID);
     }

@@ -5,8 +5,6 @@ import { ForVoiceChannels } from "./../entity";
 import { ChannelType } from "./..";
 
 export class DynamicChannelsEventHandler extends EventBase {
-
-
     constructor(client: Client, parameters: TsuParameters) {
         super(client, parameters);
     }
