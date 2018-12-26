@@ -9,8 +9,8 @@ export class GuildMemberRemoveEventHandler extends EventBase {
 
     protected RegisterEvent() {
         this.client.on('guildMemberRemove', (user) => {
-            this.GetGeneralChannel().send(`${user.nickname}(${user.id}) wyszedł z serwera.`);
-            this.GetLogChannel().send(this.BuildEmbedLogMessage('Member left.', `${user.nickname}(${user.id}) left the server.`));
+            this.GetGeneralChannel().send(`${user}(${user.id}) wyszedł z serwera.`);
+            this.GetLogChannel().send(this.BuildEmbedLogMessage('Member Left.', `${user}(${user.id}) left the server.`));
         });
     }
 }
