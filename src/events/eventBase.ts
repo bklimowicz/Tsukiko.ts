@@ -2,10 +2,7 @@ import { TsuParameters } from "./../main";
 import { Client, TextChannel, RichEmbed, MessageOptions, Attachment, Message } from "discord.js";
 import { Base } from "../common";
 
-export abstract class EventBase extends Base{
-    protected client: Client;
-    protected parameters: TsuParameters;    
-
+export abstract class EventBase extends Base {
     constructor(client: Client, parameters: TsuParameters) {
         super(client, parameters);
         this.RegisterEvent();
