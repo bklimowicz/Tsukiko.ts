@@ -3,7 +3,7 @@ import { Client, Message } from "discord.js";
 import { TsuParameters } from "./../main";
 import { Commands, MessageConstants } from "./../Common/constants/index";
 import { SetParameterCommand } from "./../commands/setParameterCommand";
-import { PingCommand, GetParameterCommand, ListParametersCommand, ReloadParametersCommand, BanCommand, ListSuggestionsCommand, SuggestCommand, ApproveCommand } from "./../commands";
+import { PingCommand, GetParameterCommand, ListParametersCommand, ReloadParametersCommand, BanCommand, ListSuggestionsCommand, SuggestCommand, ApproveCommand, UnmuteCommand } from "./../commands";
 import { TimeMuteCommand } from "./../commands/timeMuteCommand";
 import { MuteCommand } from "./../commands/muteCommand";
 import { ListMutedUsersCommand } from "./../commands/listMutedUsersCommand";
@@ -47,6 +47,9 @@ export class MessageEventHandler extends EventBase {
                 break;
             case Commands.MUTE:
                 new MuteCommand(this.client, this.parameters, message);
+                break;
+            case Commands.UNMUTE:
+                new UnmuteCommand(this.client, this.parameters, message);
                 break;
             case Commands.LIST_MUTED_USERS:
                 new ListMutedUsersCommand(this.client, this.parameters, message);

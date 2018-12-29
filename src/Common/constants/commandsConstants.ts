@@ -8,6 +8,7 @@ export abstract class Commands {
     public static readonly PING = 'ping';
     public static readonly TIMED_MUTE = 'timedMute';
     public static readonly MUTE = 'mute';
+    public static readonly UNMUTE = 'unmute';
     public static readonly LIST_MUTED_USERS = 'listMutedUsers';
     public static readonly RELOAD_PARAMETERS = 'reloadParameters';
     public static readonly KICK = 'kick';
