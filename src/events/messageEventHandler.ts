@@ -26,7 +26,7 @@ export class MessageEventHandler extends EventBase {
     }
     BanOnInvitationMessage(message: Message): void {
         if (message.channel.id === this.parameters.Channels.LOG_CHANNEL) return;
-        if (message.content.indexOf("https://discord.gg/") === -1) return;
+        if (message.content.indexOf("https://disc") === -1) return;
         
         const user = this.GetUser(message.author.id);
         if (this.isPrivilegedMember(user)) return;
