@@ -15,13 +15,33 @@ export class MessageEventHandler extends EventBase {
     }
     
     protected RegisterEvent() {
-        this.client.on('message', message => {            
+        this.client.on('message', message => {
+            this.BanOnInvitationMessage(message);        
             if (!this.IsCommand(message)) {
                 return;
             }
             
             this.commandFactory(message);
         });        
+    }
+    BanOnInvitationMessage(message: Message): void {
+        if (message.channel.id === this.parameters.Channels.LOG_CHANNEL) return;
+        if (message.content.indexOf("https://discord.gg/") === -1) return;
+        
+        const user = this.GetUser(message.author.id);
+        if (this.isPrivilegedMember(user)) return;
+        const channel = this.GetChannel(message.channel.id);
+        user.addRole(this.parameters.Roles.MUTED);
+        message.delete();
+
+        channel.send("Istnieje bezwzględny zakaz reklamowania innych serwerów kolego. Przemyśl swoje zachowanie.").then((_message: Message) => {
+            setTimeout(() => {
+                user.ban();
+                _message.delete().then(() => {
+                    this.GetLogChannel().send(this.BuildEmbedLogMessage(`Member Banned.`, `${user} was banned because of advertising.`));
+                });
+            }, 10000);
+        });
     }
 
     commandFactory(message: Message) {

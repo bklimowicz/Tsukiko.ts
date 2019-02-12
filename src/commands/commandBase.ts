@@ -31,12 +31,6 @@ export abstract class CommandBase extends Base {
         return true;
     }
 
-    protected isPrivilegedMember(guildMember: GuildMember) {
-        return guildMember.roles.has(this.parameters.Roles.ADMIN)
-            || guildMember.roles.has(this.parameters.Roles.MOD)
-            || guildMember.roles.has(this.parameters.Roles.TECHNICIAN);
-    }
-
     protected SendDeletableMessage(message: string | RichEmbed | MessageOptions | Attachment) {
         
         this.message.channel.send(message).then((_message: Message) => {

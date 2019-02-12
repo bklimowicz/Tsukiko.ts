@@ -10,6 +10,12 @@ export abstract class Base {
         this.parameters = parameters;        
     }
 
+    protected isPrivilegedMember(guildMember: GuildMember) {
+        return guildMember.roles.has(this.parameters.Roles.ADMIN)
+            || guildMember.roles.has(this.parameters.Roles.MOD)
+            || guildMember.roles.has(this.parameters.Roles.TECHNICIAN);
+    }
+
     protected GetUser(userID: string): GuildMember {
         return this.client.guilds.get(this.parameters.GUILD_ID).members.get(userID);
     }
